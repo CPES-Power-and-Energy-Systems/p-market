@@ -7,10 +7,11 @@ warnings.filterwarnings("ignore")
 
 def report_long_term(longterm_results, data_profile=None, fbp_time=None, fbp_agent=None, md=None):
     ## convert outputs to html to put in report
+    df_Tnm = None
+    best_price = None
     if data_profile == 'hourly':
         df_Gn, df_Ln, df_Pn, df_set, df_ag_op_cost = [output_to_html(longterm_results[x],filter="sum") for x in
                                             ["Gn", "Ln", "Pn", "settlement", "agent_operational_cost"]]
-
 
         #Results with different format
         df_spm = output_to_html_no_index(longterm_results["SPM"])
@@ -23,7 +24,7 @@ def report_long_term(longterm_results, data_profile=None, fbp_time=None, fbp_age
         except:
             pass
 
-        if fbp_time != 'None':
+        if fbp_time not in ('None', None):
             best_price = [longterm_results['best_price']]
 
     else:
@@ -40,11 +41,9 @@ def report_long_term(longterm_results, data_profile=None, fbp_time=None, fbp_age
             df_Tnm = output_to_html_list(longterm_results['Tnm'])
         except:
             pass
-        
-        if fbp_time != 'None':
+
+        if fbp_time not in ('None', None):
             best_price = [longterm_results['best_price']]
-
-
 
     ### REPORT_RENDERING_CODE [BEGIN]
     script_dir = os.path.dirname(__file__)
@@ -53,6 +52,7 @@ def report_long_term(longterm_results, data_profile=None, fbp_time=None, fbp_age
         loader=FileSystemLoader(os.path.join(script_dir, "asset")),
         autoescape=False
     )
+    template_content = None
     if md == 'decentralized':
         template = env.get_template('index.longtermtemplate.html')
         template_content = template.render(df_Gn=df_Gn, df_Ln=df_Ln, df_Pn=df_Pn, df_set=df_set,
