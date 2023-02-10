@@ -262,83 +262,84 @@ def convert_user_and_module_inputs(input_data):
         fbp_agent = input_data['user']["fbp_agent"]
         if fbp_agent == "None":
             fbp_agent = None
-            
-    dict_acronyms = {
-        "gridspecificngboiler" : " Grid Specific Natural Gas Boiler",
-        "gridspecificoilboiler" : " Grid Specific Oil Boiler",
-        "gridspecificbioboiler" : " Grid Specific Biomass Boiler",
-        "gridspecifichp" : " Grid Specific Heat Pump",
-        "gridspecificsthp" : " Grid Specific solar thermal with Heat Pump",
-        "dhn" : " District Heating Network",
-        "she" : " Single Heat Exchanger",
-        "mhe" : " Multiple Heat Exchanger",
-        "elwhrb" : " Electric Heat Recovery Boiler",
-        "ngwhrb" : " Natural Gas Heat Recovery Boiler",
-        "oilwhrb" : " Oil Heat Recovery Boiler",
-        "biowhrb" : " Biomass Heat Recovery Boiler",
-        "chpng" : " Natural Gas CHP",
-        "chpoil" : " Oil CHP",
-        "chpbio" : " Biomass CHP",
-        "boosthp" : " Booster Heat Pump",
-        "sthp" : " Solar thermal Heat Pump",
-        "stngboiler" : " Solar thermal with Natural gas boiler",
-        "stoilboiler" : " Solar thermal with oil boiler",
-        "stbioboiler" : " Solar thermal with biomass boiler",
-        "stelboiler" : " Solar thermal with el boiler",
-        "ac" : " Absorption Chiller",
-        "acec" : " Absorption Chiller with Electric Chiller",
-        "acngboiler":  " Absorption Chiller with Natural gas boiler",
-        "acoilboiler" : " Absorption Chiller with oil boiler",
-        "acbioboiler" : " Absorption Chiller with biomass boiler",
-        "acelectricboiler" : " Absorption Chiller with electric boiler"  ,
-        "acecngboiler" : " Absorption Chiller and Electric Chiller with Natural gas boiler",
-        "acecoilboiler" : " Absorption Chiller and Electric Chiller with oil boiler",
-        "acecbioboiler" : " Absorption Chiller and Electric Chiller with biomass boiler",
-        "acecelectricboiler" : " Absorption Chiller and Electric Chiller with electric boiler",
-        "acechp" : " Absorption Chiller and Electric Chiller with heat pump",
-        "achp" : " Absorption Chiller with heat pump",
-        "orc" : " Organic Rankine Cycle",
-        "exgrid" : " Existing Grid Technologies",
-        "hp" : " Heat Pump"}
-            
-    #Changing agent_ids to common IDs
-    for id in agent_ids:
-        if 'sou' in id:
-            for cf_id in range(0,len(input_data["cf-module"]["all_sources_info"])):
-                if int(id.split('sou')[1].split('str')[0]) == input_data["cf-module"]["all_sources_info"][cf_id]['source_id']:
-                    for abb in dict_acronyms.keys():
-                        if abb in id:
-                            agent_ids[agent_ids.index(id)] = input_data["cf-module"]["all_sources_info"][cf_id]['name'] + dict_acronyms[abb]
-
-    #Does not update agent_ids, so a new cycle is required
-    for id in agent_ids:
-        if 'sou' in id:
-            for cf_id in range(0, len(input_data["cf-module"]["all_sources_info"])):
-                if int(id.split('sou')[1].split('str')[0]) == input_data["cf-module"]["all_sources_info"][cf_id][
-                    'source_id']:
-                    agent_ids[agent_ids.index(id)] = input_data["cf-module"]["all_sources_info"][cf_id]['name']
-
-    #Sinks
-    for sink in range(0, len(all_sinks_info)):
-        for stream in range(0, len(all_sinks_info[sink]['streams'])):
-            for conv_tec in range(0, len(all_sinks_info[sink]['streams'][stream]['conversion_technologies'])):
-                for agent in agent_ids:
-                    if all_sinks_info[sink]['streams'][stream]['conversion_technologies'][conv_tec]['output_fuel'] == agent:
-                        agent_ids[agent_ids.index(agent)] = all_sinks_info[sink]['streams'][stream]['conversion_technologies'][conv_tec]['teo_equipment_name']
-                        
-            
-    for id in agent_ids:
-        if 'sink' in id:
-            for cf_id in range(0, len(all_sinks_info)):
-                if int(id.split('sink')[1].split('str')[0]) == input_data["cf-module"]["all_sinks_info"]["sinks"][cf_id]['sink_id']:
-                    for abb in dict_acronyms.keys():
-                        if abb in id:
-                            agent_ids[agent_ids.index(id)] = input_data["cf-module"]["all_sinks_info"]['sinks'][cf_id]['name'] + dict_acronyms[abb]
     
-    #CHanging grids and dhn names
-    for agent in agent_ids:
-        if agent in dict_acronyms.keys():
-            agent_ids[agent_ids.index(agent)] = dict_acronyms[agent]
+            
+    # dict_acronyms = {
+    #     "gridspecificngboiler" : " Grid Specific Natural Gas Boiler",
+    #     "gridspecificoilboiler" : " Grid Specific Oil Boiler",
+    #     "gridspecificbioboiler" : " Grid Specific Biomass Boiler",
+    #     "gridspecifichp" : " Grid Specific Heat Pump",
+    #     "gridspecificsthp" : " Grid Specific solar thermal with Heat Pump",
+    #     "dhn" : " District Heating Network",
+    #     "she" : " Single Heat Exchanger",
+    #     "mhe" : " Multiple Heat Exchanger",
+    #     "elwhrb" : " Electric Heat Recovery Boiler",
+    #     "ngwhrb" : " Natural Gas Heat Recovery Boiler",
+    #     "oilwhrb" : " Oil Heat Recovery Boiler",
+    #     "biowhrb" : " Biomass Heat Recovery Boiler",
+    #     "chpng" : " Natural Gas CHP",
+    #     "chpoil" : " Oil CHP",
+    #     "chpbio" : " Biomass CHP",
+    #     "boosthp" : " Booster Heat Pump",
+    #     "sthp" : " Solar thermal Heat Pump",
+    #     "stngboiler" : " Solar thermal with Natural gas boiler",
+    #     "stoilboiler" : " Solar thermal with oil boiler",
+    #     "stbioboiler" : " Solar thermal with biomass boiler",
+    #     "stelboiler" : " Solar thermal with el boiler",
+    #     "ac" : " Absorption Chiller",
+    #     "acec" : " Absorption Chiller with Electric Chiller",
+    #     "acngboiler":  " Absorption Chiller with Natural gas boiler",
+    #     "acoilboiler" : " Absorption Chiller with oil boiler",
+    #     "acbioboiler" : " Absorption Chiller with biomass boiler",
+    #     "acelectricboiler" : " Absorption Chiller with electric boiler"  ,
+    #     "acecngboiler" : " Absorption Chiller and Electric Chiller with Natural gas boiler",
+    #     "acecoilboiler" : " Absorption Chiller and Electric Chiller with oil boiler",
+    #     "acecbioboiler" : " Absorption Chiller and Electric Chiller with biomass boiler",
+    #     "acecelectricboiler" : " Absorption Chiller and Electric Chiller with electric boiler",
+    #     "acechp" : " Absorption Chiller and Electric Chiller with heat pump",
+    #     "achp" : " Absorption Chiller with heat pump",
+    #     "orc" : " Organic Rankine Cycle",
+    #     "exgrid" : " Existing Grid Technologies",
+    #     "hp" : " Heat Pump"}
+    #
+    # #Changing agent_ids to common IDs
+    # for id in agent_ids:
+    #     if 'sou' in id:
+    #         for cf_id in range(0,len(input_data["cf-module"]["all_sources_info"])):
+    #             if int(id.split('sou')[1].split('str')[0]) == input_data["cf-module"]["all_sources_info"][cf_id]['source_id']:
+    #                 for abb in dict_acronyms.keys():
+    #                     if abb in id:
+    #                         agent_ids[agent_ids.index(id)] = input_data["cf-module"]["all_sources_info"][cf_id]['name'] + dict_acronyms[abb]
+    #
+    # #Does not update agent_ids, so a new cycle is required
+    # for id in agent_ids:
+    #     if 'sou' in id:
+    #         for cf_id in range(0, len(input_data["cf-module"]["all_sources_info"])):
+    #             if int(id.split('sou')[1].split('str')[0]) == input_data["cf-module"]["all_sources_info"][cf_id][
+    #                 'source_id']:
+    #                 agent_ids[agent_ids.index(id)] = input_data["cf-module"]["all_sources_info"][cf_id]['name']
+    #
+    # #Sinks
+    # for sink in range(0, len(all_sinks_info)):
+    #     for stream in range(0, len(all_sinks_info[sink]['streams'])):
+    #         for conv_tec in range(0, len(all_sinks_info[sink]['streams'][stream]['conversion_technologies'])):
+    #             for agent in agent_ids:
+    #                 if all_sinks_info[sink]['streams'][stream]['conversion_technologies'][conv_tec]['output_fuel'] == agent:
+    #                     agent_ids[agent_ids.index(agent)] = all_sinks_info[sink]['streams'][stream]['conversion_technologies'][conv_tec]['teo_equipment_name']
+    #
+    #
+    # for id in agent_ids:
+    #     if 'sink' in id:
+    #         for cf_id in range(0, len(all_sinks_info)):
+    #             if int(id.split('sink')[1].split('str')[0]) == input_data["cf-module"]["all_sinks_info"]["sinks"][cf_id]['sink_id']:
+    #                 for abb in dict_acronyms.keys():
+    #                     if abb in id:
+    #                         agent_ids[agent_ids.index(id)] = input_data["cf-module"]["all_sinks_info"]['sinks'][cf_id]['name'] + dict_acronyms[abb]
+    #
+    # #CHanging grids and dhn names
+    # for agent in agent_ids:
+    #     if agent in dict_acronyms.keys():
+    #         agent_ids[agent_ids.index(agent)] = dict_acronyms[agent]
                             
     # construct input_dict
     input_dict = {

@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bb56f31c-037a-4df5-b585-bd13877dba86" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market_module/long_term/datastructures/resultobject.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_module/long_term/datastructures/resultobject.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market_module/long_term/market_functions/convert_user_and_module_inputs.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_module/long_term/market_functions/convert_user_and_module_inputs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_long_term_off.html" beforeDir="false" afterPath="$PROJECT_DIR$/test_long_term_off.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market_module/long_term/report/report_long_term.py" beforeDir="false" afterPath="$PROJECT_DIR$/market_module/long_term/report/report_long_term.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +51,7 @@
       <recent name="C:\Users\antonio.s.faria\OneDrive - INESC TEC\EMB3Rs-programming\build\html" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.checking_results">
+  <component name="RunManager" selected="Python.hardtest">
     <configuration name="checking_results" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EMB3Rs-programming" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -66,6 +65,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/checking_results.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hardtest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EMB3Rs-programming" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/market_module/long_term" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/market_module/long_term/hardtest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -116,27 +136,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="EMB3Rs-programming" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test_prototype_centralized_case_study_2months" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EMB3Rs-programming" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -160,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.hardtest" />
         <item itemvalue="Python.checking_results" />
         <item itemvalue="Python.main_longterm" />
         <item itemvalue="Python.checking_results" />
         <item itemvalue="Python.sergio_test(delete later)" />
-        <item itemvalue="Python.test_prototype_centralized_case_study_2months" />
       </list>
     </recent_temporary>
   </component>
