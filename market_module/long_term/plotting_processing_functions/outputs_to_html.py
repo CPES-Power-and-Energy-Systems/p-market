@@ -58,4 +58,8 @@ def get_sum(df):
 
     return df
 
+def replace_dict_keys(d, new_keys):
+    n = min(len(d), len(new_keys))
+    d_new = {new_keys[i]: d[list(d.keys())[i]] for i in range(n)}
+    return d_new
 

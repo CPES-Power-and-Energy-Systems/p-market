@@ -1,11 +1,15 @@
-from market_module.long_term.plotting_processing_functions.outputs_to_html import output_to_html, output_to_html_no_index, output_to_html_no_index_transpose, output_to_html_list
+from market_module.long_term.plotting_processing_functions.outputs_to_html import output_to_html, output_to_html_no_index, output_to_html_no_index_transpose, output_to_html_list, replace_dict_keys
 from jinja2 import Environment, FileSystemLoader, PackageLoader, select_autoescape
 import os
 
 import warnings
 warnings.filterwarnings("ignore")
 
-def report_long_term(longterm_results, data_profile=None, fbp_time=None, fbp_agent=None, md=None):
+def report_long_term(longterm_results, data_profile=None, fbp_time=None, fbp_agent=None, md=None, agent_ids_to_report=None):
+    
+    for x in ["Gn", "Ln", "Pn", "settlement", "agent_operational_cost", "SPM", "ADG"]:
+        longterm_results[x] = replace_dict_keys(longterm_results[x], agent_ids_to_report)
+        
     ## convert outputs to html to put in report
     df_Tnm = None
     best_price = None
@@ -44,7 +48,7 @@ def report_long_term(longterm_results, data_profile=None, fbp_time=None, fbp_age
 
         if fbp_time not in ('None', None):
             best_price = [longterm_results['best_price']]
-
+    
     ### REPORT_RENDERING_CODE [BEGIN]
     script_dir = os.path.dirname(__file__)
 
