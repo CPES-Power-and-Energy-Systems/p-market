@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emb3rs - Test Report</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"
+    integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+</head>
+
+
+
+<body class="container pt-5">
+  <img src="https://www.emb3rs.eu/wp-content/uploads/2019/12/EMB3Rs_horizontal-Logo.png" class="img">
+  <!-- Change after this -->
+  <h1>Market Module - Long Term</h1>
+  The Market Module - Long Term allows users to simulate current and future trends for the HC markets, allowing them to choose the
+  best market framework aligned with the users economic, environmental and social interests. Therefore, the Market Module - Long Term models
+  and implements the centralized and decentralized market designs.
+  In this way, users can create, test and validate different market structures for energy matching in DHC systems.
+  The outputs of the market analysis enable users (e.g., industries, supermarkets and data centres) to estimate potential
+  costs and revenues for different market participants from trading excess heat and cold.
+
+
+  <h2>Main Results</h2>
+  <div class="accordion" id="accordionExample">
+    <! Generation-->
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Generation per agent [kWh]
+          </button>
+        </h2>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              Amount sold in the market for each agent for each time step.
+              <p></p>
+              <div class="table-responsive">
+              <table class="table">
+                {{df_Gn}}
+               </table>
+            </div>
+          </div>
+    </div>
+    <! Load-->
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Load per agent [kWh]
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+            Amount purchased in the market for each agent for each time step.
+          <p></p>
+          <div class="table-responsive">
+              <table class="table">
+                {{df_Ln}}
+               </table>
+            </div>
+        </div>
+      </div>
+    </div>
+    <! Settlemnt-->
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Settlement per agent [&euro;]
+          </button>
+        </h2>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+                          The settlement corresponds to the revenue for producers and payment for consumers. This quantity is outputted for each agent individually.
+                <p> For the centralized market, it is computed as:
+                <p> <center> <img src="https://latex.codecogs.com/svg.image?SE_n&space;=&space;\sum&space;_{m\in\Omega_n}\lambda&space;P_{n,m}" title="https://latex.codecogs.com/svg.image?SE_n = \sum _{m\in\Omega_n}\lambda P_{n,m}" /></p></center>
+
+              <p> For the decentralized market, it is computed as:
+                <p><center> <img src="https://latex.codecogs.com/svg.image?SE_n&space;=&space;\sum&space;_{m\in\Omega_n}\lambda_{n,m}&space;P_{n,m}" title="https://latex.codecogs.com/svg.image?SE_n = \sum _{m\in\Omega_n}\lambda_{n,m} P_{n,m}" />
+          <p></p>
+          <div class="table-responsive">
+              <table class="table">
+                {{df_set}}
+               </table>
+            </div>
+        </div>
+      </div>
+    <! Net balance-->
+      <div class="card">
+        <div class="card-header" id="headingFour">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Net Balance per agent [kWh]
+            </button>
+          </h2>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+          <div class="card-body">
+            The net balance for each agent for each time step.
+            <p></p>
+            <div class="table-responsive">
+              <table class="table">
+                {{df_Pn}}
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <! Agent operational cost -->
+      <div class="card">
+        <div class="card-header" id="headingFive">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Agent Operational Cost per agent [&euro;]
+            </button>
+          </h2>
+        </div>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+          <div class="card-body">
+                            This quantity can be computed for each producer/consumer, and is equal to the scheduled quantity times the price bid of that producer/consumer:
+              <p> <center> <img src="https://latex.codecogs.com/svg.image?Agent&space;Operational&space;Cost&space;=&space;\sum&space;_{m\in\Omega_n}C_{n,m}&space;P_{n,m}" title="https://latex.codecogs.com/svg.image?Agent Operational Cost = \sum _{m\in\Omega_n}C_{n,m} P_{n,m}" /></center></p>
+            <p></p>
+            <div class="table-responsive">
+              <table class="table">
+                {{df_ag_op_cost}}
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <! SPM -->
+      <div class="card">
+        <div class="card-header" id="headingSeven">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              Successful Participation in the Market per agent [%]
+            </button>
+          </h2>
+        </div>
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+          <div class="card-body">
+                            SPM indicates the level of participation in the market. In the first step successful participation is calculated:
+              <p><center> <img src="https://latex.codecogs.com/svg.image?\chi_n^t=\begin{Bmatrix}1,&space;&&space;P_n^t>0&space;&&space;(dispatched)&space;\\0&space;&&space;P_n^t=0&space;&&space;(not&space;dispatched)&space;\\\end{Bmatrix}" title="https://latex.codecogs.com/svg.image?\chi_n^t=\begin{Bmatrix}1, & P_n^t>0 & (dispatched) \\0 & P_n^t=0 & (not dispatched) \\\end{Bmatrix}" /></center></p>
+            In the second step, SPM (%) is calculated, for each source, considering all time slots as:
+              <p><center> <img src="https://latex.codecogs.com/svg.image?SPM_n=\frac{1}{T}\sum&space;_{t\in&space;T}\chi_n^t*100" title="https://latex.codecogs.com/svg.image?SPM_n=\frac{1}{T}\sum _{t\in T}\chi_n^t*100" /></center></p>
+            <p></p>
+                        <div class="table-responsive">
+              <table class="table">
+                {{df_spm}}
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+            <! ADG -->
+      <div class="card">
+        <div class="card-header" id="headingEight">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+              Average Dispatched Generation per agent [%]
+            </button>
+          </h2>
+        </div>
+        <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+          <div class="card-body">
+                            ADG is the share of the maximum energy that is dispatched, averaged over time, calculated as:
+              <p> <center><img src="https://latex.codecogs.com/svg.image?ADG_n=\frac{1}{T}&space;\frac{\sum_{t\in&space;T&space;P_n^t}}{\bar{P_n^t}}" title="https://latex.codecogs.com/svg.image?ADG_n=\frac{1}{T} \frac{\sum_{t\in T P_n^t}}{\bar{P_n^t}}" /> </center></p>
+            <p>where <img src="https://latex.codecogs.com/svg.image?{\bar{P_n^t}}" title="https://latex.codecogs.com/svg.image?{\bar{P_n^t}}" /> is the maximum available energy quantity for a certain agent at a specific time.</p>
+            <p></p>
+                        <div class="table-responsive">
+              <table class="table">
+                {{df_adg}}
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <! Social Welfare -->
+      <div class="card">
+        <div class="card-header" id="headingTen">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+              Social Welfare per time stamp [&euro;]
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
+          <div class="card-body">
+                              Social welfare comprises all market agents and is computed by summing the scheduled quantity times the price bid of that agent:
+              <p><center><img src="https://latex.codecogs.com/svg.image?SW=\sum_{n\in&space;\Omega_n}C_nP_n" title="https://latex.codecogs.com/svg.image?SW=\sum_{n\in \Omega_n}C_nP_n" /></center></p>
+            <p></p>
+                        <div class="table-responsive">
+              <table class="table">
+                {{df_social_w}}
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <! Shadow price -->
+      <div class="card">
+        <div class="card-header" id="headingEleven">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+              Shadow Price [&euro;/kWh]
+            </button>
+          </h2>
+        </div>
+        <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionExample">
+          <div class="card-body">
+                              Represents the market clearing price. Presents one value per time step, if the centralized market design is chosen. Outputs one value per transaction and per time step, if the decentralized market design is the selected one.
+            <p></p>
+                        <div class="table-responsive">
+              <table class="table">
+                {{df_shadow_price}}
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+  </div>
+
+
+  <!-- Change Before this -->
+</body>
+
+</html>
