@@ -5,11 +5,11 @@ import os
 import warnings
 warnings.filterwarnings("ignore")
 
-def report_long_term(longterm_results, data_profile=None, fbp_time=None, fbp_agent=None, md=None, agent_ids_to_report=None):
-    
+def report_long_term(longterm_results, data_profile, fbp_time, fbp_agent, md, agent_ids_to_report):
+
     for x in ["Gn", "Ln", "Pn", "settlement", "agent_operational_cost", "SPM", "ADG"]:
         longterm_results[x] = replace_dict_keys(longterm_results[x], agent_ids_to_report)
-        
+
     ## convert outputs to html to put in report
     df_Tnm = None
     best_price = None
