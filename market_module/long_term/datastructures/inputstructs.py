@@ -199,9 +199,8 @@ class AgentData(BaseModel):
             self.gmax = pd.DataFrame(self.cumulative_sum(np.array(self.gmax), self.settings), columns=self.agent_name)
             self.lmax = pd.DataFrame(self.cumulative_sum(np.array(self.lmax), self.settings), columns=self.agent_name)
 
-            self.cost = pd.DataFrame(self.cumulative_sum(np.array(self.cost), self.settings), columns=self.agent_name)
-            self.util = pd.DataFrame(self.cumulative_sum(np.array(self.util), self.settings), columns=self.agent_name)
-                 
+            self.cost = pd.DataFrame(self.average_sum(np.array(self.cost), self.settings), columns=self.agent_name)
+            self.util = pd.DataFrame(self.average_sum(np.array(self.util), self.settings), columns=self.agent_name)
         else:
             self.gmax = pd.DataFrame(self.gmax, columns=self.agent_name)
             self.lmax = pd.DataFrame(self.lmax, columns=self.agent_name)
@@ -223,6 +222,14 @@ class AgentData(BaseModel):
             for k,j in enumerate(range(0,self.settings.diff*24,24)):
                 x[k][i]=sum(nested_array[j:j+24,i])
         return x
+    
+    def average_sum(self, nested_array, settings):
+        x=np.zeros([self.settings.diff,self.nr_of_agents])
+        for i in range(0,self.nr_of_agents):
+            for k,j in enumerate(range(0,self.settings.diff*24,24)):
+                x[k][i]=np.average(nested_array[j:j+24,i])
+        return x
+    
 
     def check_dimension(input_list):
         aux=[]
