@@ -104,8 +104,16 @@ def convert_user_and_module_inputs(input_data):
 
     #Converting timeslice from str to int
     ProductionByTechnologyAnnual['TIMESLICE'] = ProductionByTechnologyAnnual['TIMESLICE'].astype('int')
-    #Getting names
-    agent_names = ProductionByTechnologyAnnual.TECHNOLOGY.unique()
+    
+    #Getting names and removing agents with 0 cost
+    agent_names_all = ProductionByTechnologyAnnual.TECHNOLOGY.unique()
+    
+    list_agent_names = []
+    for agent in agent_names_all:
+        if VariableOMCost.loc[(VariableOMCost['TECHNOLOGY'] == agent)]["VALUE"].values[0] != 0.0:
+            list_agent_names.append(agent)
+    agent_names=np.array(list_agent_names)
+    
     #Getting source names by removing sink names
     source_names = []
     for word in agent_names:
