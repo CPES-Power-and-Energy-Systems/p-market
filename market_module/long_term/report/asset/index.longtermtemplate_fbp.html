@@ -55,7 +55,7 @@
               Amount sold in the market for each agent for each time step.
               <p></p>
               <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_1">
                 {{df_Gn}}
                </table>
             </div>
@@ -75,7 +75,7 @@
             Amount purchased in the market for each agent for each time step.
           <p></p>
           <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_2">
                 {{df_Ln}}
                </table>
             </div>
@@ -101,7 +101,7 @@
                 <p><center> <img src="https://latex.codecogs.com/svg.image?SE_n&space;=&space;\sum&space;_{m\in\Omega_n}\lambda_{n,m}&space;P_{n,m}" title="https://latex.codecogs.com/svg.image?SE_n = \sum _{m\in\Omega_n}\lambda_{n,m} P_{n,m}" />
           <p></p>
           <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_3">
                 {{df_set}}
                </table>
             </div>
@@ -121,7 +121,7 @@
             The net balance for each agent for each time step.
             <p></p>
             <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_4">
                 {{df_Pn}}
                </table>
             </div>
@@ -143,7 +143,7 @@
               <p> <center> <img src="https://latex.codecogs.com/svg.image?Agent&space;Operational&space;Cost&space;=&space;\sum&space;_{m\in\Omega_n}C_{n,m}&space;P_{n,m}" title="https://latex.codecogs.com/svg.image?Agent Operational Cost = \sum _{m\in\Omega_n}C_{n,m} P_{n,m}" /></center></p>
             <p></p>
             <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_5">
                 {{df_ag_op_cost}}
                </table>
             </div>
@@ -167,7 +167,7 @@
               <p><center> <img src="https://latex.codecogs.com/svg.image?SPM_n=\frac{1}{T}\sum&space;_{t\in&space;T}\chi_n^t*100" title="https://latex.codecogs.com/svg.image?SPM_n=\frac{1}{T}\sum _{t\in T}\chi_n^t*100" /></center></p>
             <p></p>
                         <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_6">
                 {{df_spm}}
                </table>
             </div>
@@ -190,7 +190,7 @@
             <p>where <img src="https://latex.codecogs.com/svg.image?{\bar{P_n^t}}" title="https://latex.codecogs.com/svg.image?{\bar{P_n^t}}" /> is the maximum available energy quantity for a certain agent at a specific time.</p>
             <p></p>
                         <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_7">
                 {{df_adg}}
                </table>
             </div>
@@ -215,7 +215,7 @@
               <p><center><img src="https://latex.codecogs.com/svg.image?SW=\sum_{n\in&space;\Omega_n}C_nP_n" title="https://latex.codecogs.com/svg.image?SW=\sum_{n\in \Omega_n}C_nP_n" /></center></p>
             <p></p>
                         <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_8">
                 {{df_social_w}}
                </table>
             </div>
@@ -237,7 +237,7 @@
                               Represents the market clearing price. Presents one value per time step, if the centralized market design is chosen. Outputs one value per transaction and per time step, if the decentralized market design is the selected one.
             <p></p>
                         <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="market_datatable_9">
                 {{df_shadow_price}}
                </table>
             </div>
