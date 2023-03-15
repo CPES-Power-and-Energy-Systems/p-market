@@ -312,21 +312,22 @@ def convert_user_and_module_inputs(input_data):
         "hp" : " Heat Pump"}
 
     #Changing agent_ids to common IDs
-    for id in agent_ids_to_report:
+    for id in agent_ids:
         if 'sou' in id:
             for cf_id in range(0,len(input_data["cf-module"]["all_sources_info"])):
                 if int(id.split('sou')[1].split('str')[0]) == input_data["cf-module"]["all_sources_info"][cf_id]['source_id']:
                     for abb in dict_acronyms.keys():
                         if abb in id:
-                            agent_ids_to_report[agent_ids_to_report.index(id)] = input_data["cf-module"]["all_sources_info"][cf_id]['name'] + dict_acronyms[abb]
+                            agent_ids_to_report[agent_ids.index(id)] = \
+                            input_data["cf-module"]["all_sources_info"][cf_id]['name'] + dict_acronyms[abb]
 
-    #Does not update agent_ids, so a new cycle is required
-    for id in agent_ids_to_report:
-        if 'sou' in id:
-            for cf_id in range(0, len(input_data["cf-module"]["all_sources_info"])):
-                if int(id.split('sou')[1].split('str')[0]) == input_data["cf-module"]["all_sources_info"][cf_id][
-                    'source_id']:
-                    agent_ids_to_report[agent_ids_to_report.index(id)] = input_data["cf-module"]["all_sources_info"][cf_id]['name']
+    # #Does not update agent_ids, so a new cycle is required
+    # for id in agent_ids:
+    #     if 'sou' in id:
+    #         for cf_id in range(0, len(input_data["cf-module"]["all_sources_info"])):
+    #             if int(id.split('sou')[1].split('str')[0]) == input_data["cf-module"]["all_sources_info"][cf_id][
+    #                 'source_id']:
+    #                 agent_ids_to_report[agent_ids_to_report.index(id)] = input_data["cf-module"]["all_sources_info"][cf_id]['name']
 
     #Sinks
     for sink in range(0, len(all_sinks_info)):
